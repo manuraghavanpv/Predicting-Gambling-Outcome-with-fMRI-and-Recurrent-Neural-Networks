@@ -234,8 +234,6 @@ surf_contrast = group_contrast[atlas["labels_L"] - 1]
 
 ############################################################################################################################
 
-# Building a GLM and Predicting Gambling Outcomes
-
 import numpy as np
 import statsmodels.api as sm
 from sklearn.preprocessing import StandardScaler
@@ -282,6 +280,9 @@ recalls = []
 f1_scores = []
 roc_aucs = []
 
+tprs = []
+mean_fpr = np.linspace(0, 1, 100)
+
 for train_index, test_index in kf.split(X_scaled):
     X_train, X_test = X_scaled[train_index], X_scaled[test_index]
     y_train, y_test = y[train_index], y[test_index]
@@ -301,6 +302,11 @@ for train_index, test_index in kf.split(X_scaled):
     f1_scores.append(f1_score(y_test, y_pred))
     roc_aucs.append(roc_auc_score(y_test, y_pred_prob))
 
+    # Compute ROC curve and area under the curve
+    fpr, tpr, _ = roc_curve(y_test, y_pred_prob)
+    tprs.append(np.interp(mean_fpr, fpr, tpr))
+    tprs[-1][0] = 0.0
+
 # Calculate average metrics
 mean_accuracy = np.mean(accuracies)
 mean_precision = np.mean(precisions)
@@ -315,6 +321,30 @@ print(f'Mean F1 Score: {mean_f1_score:.4f}')
 print(f'Mean ROC AUC: {mean_roc_auc:.4f}')
 
 print(results.summary())
+
+#Plotting the ROC curve
+# Plot ROC curve
+plt.figure(figsize=(8, 6))
+
+tprs = np.array(tprs)
+mean_tpr = tprs.mean(axis=0)
+mean_tpr[-1] = 1.0
+mean_auc = auc(mean_fpr, mean_tpr)
+std_tpr = tprs.std(axis=0)
+
+plt.plot(mean_fpr, mean_tpr, color='b', label=f'Mean ROC (AUC = {mean_auc:.2f})', lw=2, alpha=.8)
+
+std_tpr_upper = np.minimum(mean_tpr + std_tpr, 1)
+std_tpr_lower = np.maximum(mean_tpr - std_tpr, 0)
+plt.fill_between(mean_fpr, std_tpr_lower, std_tpr_upper, color='grey', alpha=.2, label='± 1 std. dev.')
+
+plt.plot([0, 1], [0, 1], linestyle='--', color='r', label='Chance', lw=2, alpha=.8)
+
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.legend(loc='lower right')
+plt.show()
 
 ############################################################################################################################
 
@@ -647,5 +677,28 @@ print(f'Mean Precision: {mean_precision:.4f}')
 print(f'Mean Recall: {mean_recall:.4f}')
 print(f'Mean F1 Score: {mean_f1_score:.4f}')
 print(f'Mean ROC AUC: {mean_roc_auc:.4f}')
+
+# Plot ROC curve
+plt.figure(figsize=(8, 6))
+
+tprs = np.array(tprs)
+mean_tpr = tprs.mean(axis=0)
+mean_tpr[-1] = 1.0
+mean_auc = auc(mean_fpr, mean_tpr)
+std_tpr = tprs.std(axis=0)
+
+plt.plot(mean_fpr, mean_tpr, color='b', label=f'Mean ROC (AUC = {mean_auc:.2f})', lw=2, alpha=.8)
+
+std_tpr_upper = np.minimum(mean_tpr + std_tpr, 1)
+std_tpr_lower = np.maximum(mean_tpr - std_tpr, 0)
+plt.fill_between(mean_fpr, std_tpr_lower, std_tpr_upper, color='grey', alpha=.2, label='± 1 std. dev.')
+
+plt.plot([0, 1], [0, 1], linestyle='--', color='r', label='Chance', lw=2, alpha=.8)
+
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.legend(loc='lower right')
+plt.show()
 
 ############################################################################################################################
