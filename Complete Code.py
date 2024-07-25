@@ -401,6 +401,8 @@ ppvs = []  # PPV values
 npvs = []  # NPV values
 senses = []  # Sensitivity values
 specs = []  # Specificity values
+precisions = []  # Precision values
+recalls = []  # Recall values
 cms = []  # Confusion Matrices
 mean_fpr = np.linspace(0, 1, 100)
 
@@ -448,6 +450,12 @@ for train_idx, test_idx in kf:
     spec = cm[0, 0] / (cm[0, 0] + cm[0, 1])
     specs.append(spec)
 
+    # Calculate precision and recall
+    precision = precision_score(y_val, preds)
+    recall = recall_score(y_val, preds)
+    precisions.append(precision)
+    recalls.append(recall)
+
     train_loss.append(hist.history['loss'])
     train_acc.append(hist.history['accuracy'])
     val_loss.append(hist.history['val_loss'])
@@ -461,6 +469,8 @@ print("Avg PPV:", np.mean(ppvs))
 print("Avg NPV:", np.mean(npvs))
 print("Avg Sensitivity:", np.mean(senses))
 print("Avg Specificity:", np.mean(specs))
+print("Avg Precision:", np.mean(precisions))
+print("Avg Recall:", np.mean(recalls))
 
 # ROC Curve
 mean_tpr = np.mean(tprs, axis=0)
