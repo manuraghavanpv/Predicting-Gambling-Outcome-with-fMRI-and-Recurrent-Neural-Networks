@@ -233,6 +233,7 @@ fsaverage = datasets.fetch_surf_fsaverage()
 surf_contrast = group_contrast[atlas["labels_L"] - 1]
 
 ############################################################################################################################
+#Building a standalone GLM to predict gambling outcome
 
 import numpy as np
 import statsmodels.api as sm
