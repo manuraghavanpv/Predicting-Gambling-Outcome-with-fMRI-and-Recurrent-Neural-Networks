@@ -13,7 +13,7 @@ For a more sophisticated approach, we developed a Long Short-Term Memory (LSTM) 
 The performance of both the GLM and LSTM models were evaluated on the dataset using 10-fold cross validation to assess the generalization capability of our models and ensure robustness of our results. The average accuracy, precision and recall across these folds were utilized to compare model performance.
 ### Results
 The performance of the Generalized Linear Model (GLM), Long Short-Term Memory (LSTM) neural network, and the combined model were compared using 3 metrics: average accuracy, precision, and recall.
- <br> 
+ 
 **Generalized Linear Model (GLM) Performance:**
 Average Accuracy: 64%
 Average Precision: 65.63%
