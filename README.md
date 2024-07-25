@@ -22,14 +22,14 @@ The performance of the Generalized Linear Model (GLM), Long Short-Term Memory (L
 
 **Long Short-Term Memory (LSTM) Model Performance:**
 * Average Accuracy: 83%
-* Average Precision: 83.78%
-* Average Recall: 
+* Average Precision: 80.26%
+* Average Recall: 82.75%
 * The LSTM model significantly outperformed the GLM, achieving an average accuracy of 82.5%. This improvement underscores the LSTM's capability to effectively handle the temporal dynamics present in fMRI data, allowing for more accurate predictions of gambling outcomes.
 
 **Combined GLM and LSTM Model Performance:**
-* Average Accuracy: 85% ;
-* Average Precision: 85.63% ;
-* Average Recall: 86.88% ;
+* Average Accuracy: 85% 
+* Average Precision: 85.63% 
+* Average Recall: 86.88% 
 * To further enhance predictive performance, we combined the outputs of both the GLM and LSTM models. This combined approach yielded the highest average accuracy of 85%, indicating a synergistic effect that leverages the strengths of both models. The combined model thus provides the most robust predictions of gambling outcomes within the context of our dataset.
 
 ### Conclusions
