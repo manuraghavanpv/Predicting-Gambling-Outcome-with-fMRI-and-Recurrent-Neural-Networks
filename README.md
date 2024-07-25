@@ -15,22 +15,22 @@ The performance of both the GLM and LSTM models were evaluated on the dataset us
 The performance of the Generalized Linear Model (GLM), Long Short-Term Memory (LSTM) neural network, and the combined model were compared using 3 metrics: average accuracy, precision, and recall.
  
 **Generalized Linear Model (GLM) Performance:**
-Average Accuracy: 64%
-Average Precision: 65.63%
-Average Recall: 63.28%
-The GLM, serving as our baseline model, demonstrated moderate accuracy in predicting gambling outcomes. However, its performance indicates limitations in capturing the temporal dependencies inherent in fMRI data, as reflected by the average accuracy of 64%.
+* Average Accuracy = 64%, 
+* Average Precision: 65.63%
+* Average Recall: 63.28%
+* The GLM, serving as our baseline model, demonstrated moderate accuracy in predicting gambling outcomes. However, its performance indicates limitations in capturing the temporal dependencies inherent in fMRI data, as reflected by the average accuracy of 64%.
 
 **Long Short-Term Memory (LSTM) Model Performance:**
-Average Accuracy: 83%
-Average Precision: 83.78%
-Average Recall: 
-The LSTM model significantly outperformed the GLM, achieving an average accuracy of 82.5%. This improvement underscores the LSTM's capability to effectively handle the temporal dynamics present in fMRI data, allowing for more accurate predictions of gambling outcomes.
+* Average Accuracy: 83%
+* Average Precision: 83.78%
+* Average Recall: 
+* The LSTM model significantly outperformed the GLM, achieving an average accuracy of 82.5%. This improvement underscores the LSTM's capability to effectively handle the temporal dynamics present in fMRI data, allowing for more accurate predictions of gambling outcomes.
 
 **Combined GLM and LSTM Model Performance:**
-Average Accuracy: 85% ;
-Average Precision: 85.63% ;
-Average Recall: 86.88% ;
-To further enhance predictive performance, we combined the outputs of both the GLM and LSTM models. This combined approach yielded the highest average accuracy of 85%, indicating a synergistic effect that leverages the strengths of both models. The combined model thus provides the most robust predictions of gambling outcomes within the context of our dataset.
+* Average Accuracy: 85% ;
+* Average Precision: 85.63% ;
+* Average Recall: 86.88% ;
+* To further enhance predictive performance, we combined the outputs of both the GLM and LSTM models. This combined approach yielded the highest average accuracy of 85%, indicating a synergistic effect that leverages the strengths of both models. The combined model thus provides the most robust predictions of gambling outcomes within the context of our dataset.
 
 ### Conclusions
 Overall, the results highlight the critical role of the Default Mode Network (DMN) in risky decision-making as well as the utility of predictive models in neuroimaging. While the GLM alone is insufficient in capturing the temporal dependencies of fMRI data, the LSTM efficiently handles these dynamics even with a relatively small dataset. The combined model offers the best performance, demonstrating the potential of integrating advanced predictive models to decode complex brain functions and improve our understanding of the neural mechanisms underlying risky decision-making.
